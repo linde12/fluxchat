@@ -1,5 +1,5 @@
 define(function (require) {
-	var AppDispatcher = require('../dispatcher/appdispatcher'),
+	var AppDispatcher = require('../dispatcher/AppDispatcher'),
 		EventEmmiter = require('events'),
 		IoHandler = require('../IoHandler'),
 		messages = [];
@@ -19,6 +19,7 @@ define(function (require) {
 		});
 	};
 
+	// This is a mess... TODO: Look at a better way of doing this with a static store
 	MessageStore.prototype = EventEmmiter.prototype;
 
 	MessageStore.prototype.getMessages = function () {

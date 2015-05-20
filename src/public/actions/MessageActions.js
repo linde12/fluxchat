@@ -1,5 +1,5 @@
 define(function (require) {
-	var AppDispatcher = require('../dispatcher/appdispatcher');
+	var AppDispatcher = require('../dispatcher/AppDispatcher');
 	return {
 		addMessage: function (message) {
 			AppDispatcher.dispatch({
