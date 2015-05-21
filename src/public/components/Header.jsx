@@ -24,8 +24,7 @@ define(function (require) {
         render: function () {
             return (
                 <div>
-                Header - {this.state.noOfMessages} message(s) - 
-                {this.state.noOfPeople} {this.state.noOfPeople > 1 ? 'people' : 'person'} connected</div>
+                Header - {this.state.noOfMessages} message(s) - {this.state.noOfPeople} {this.state.noOfPeople > 1 ? 'people' : 'person'} connected</div>
             )
         }
     });
