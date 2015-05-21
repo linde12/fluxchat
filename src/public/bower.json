@@ -1,0 +1,30 @@
+{
+  "name": "fluxchat",
+  "version": "0.0.1",
+  "homepage": "https://github.com/linde12/fluxchat",
+  "authors": [
+    "Oscar Linde <lindeoscar@gmail.com>"
+  ],
+  "description": "example chat w/ websocket, react and flux",
+  "main": "Main.js",
+  "keywords": [
+    "socket.io",
+    "websocket",
+    "react",
+    "flux"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "eventemitter2": "~0.4.14",
+    "flux": "~2.0.2",
+    "requirejs-react-jsx": "~0.13.1",
+    "requirejs": "~2.1.17"
+  }
+}
