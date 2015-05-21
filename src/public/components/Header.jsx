@@ -1,34 +1,34 @@
 define(function (require) {
-	var React = require('react'),
-		MessageStore = require('../stores/MessageStore');
+    var React = require('react'),
+        MessageStore = require('../stores/MessageStore');
 
-	var Header = React.createClass({
-		getInitialState: function () {
-			return {
-				noOfMessages: MessageStore.getMessages().length,
-				noOfPeople: MessageStore.getPeople().length
-			};
-		},
+    var Header = React.createClass({
+        getInitialState: function () {
+            return {
+                noOfMessages: MessageStore.getMessages().length,
+                noOfPeople: MessageStore.getPeople().length
+            };
+        },
 
-		componentDidMount: function () {
-			MessageStore.addChangeListener(this.onChange);
-		},
+        componentDidMount: function () {
+            MessageStore.addChangeListener(this.onChange);
+        },
 
-		onChange: function () {
-			this.setState({
-				noOfMessages: MessageStore.getMessages().length,
-				noOfPeople: MessageStore.getPeople().length
-			});
-		},
+        onChange: function () {
+            this.setState({
+                noOfMessages: MessageStore.getMessages().length,
+                noOfPeople: MessageStore.getPeople().length
+            });
+        },
 
-		render: function () {
-			return (
-				<div>
-				Header - {this.state.noOfMessages} message(s) - 
-				{this.state.noOfPeople} {this.state.noOfPeople > 1 ? 'people' : 'person'} connected</div>
-			)
-		}
-	});
+        render: function () {
+            return (
+                <div>
+                Header - {this.state.noOfMessages} message(s) - 
+                {this.state.noOfPeople} {this.state.noOfPeople > 1 ? 'people' : 'person'} connected</div>
+            )
+        }
+    });
 
-	return Header;
+    return Header;
 });
