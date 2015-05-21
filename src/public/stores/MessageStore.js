@@ -2,7 +2,8 @@ define(function (require) {
 	var AppDispatcher = require('../dispatcher/AppDispatcher'),
 		EventEmmiter = require('events'),
 		IoHandler = require('../IoHandler'),
-		messages = [];
+		messages = [],
+		people = [];
 
 	var MessageStore = function () {
 		var self = this;
@@ -11,6 +12,11 @@ define(function (require) {
 
 		IoHandler.on('message', function (message) {
 			messages.push(message);
+			self.emitChange();
+		});
+
+		IoHandler.on('people', function (peopleArray) {
+			people = peopleArray;
 			self.emitChange();
 		});
 
@@ -24,6 +30,10 @@ define(function (require) {
 
 	MessageStore.prototype.getMessages = function () {
 		return messages;
+	};
+
+	MessageStore.prototype.getPeople = function () {
+		return people;
 	};
 
 	MessageStore.prototype.emitChange = function () {

@@ -30,13 +30,14 @@ define(function (require) {
 
 		render: function () {
 			var rows = [];
-			this.state.messages.map(function (message) {
-				rows.push(<li>{message.alias}: {message.text}</li>);
+			this.state.messages.forEach(function (message, index) {
+				rows.push(<li className="message-item" key={index}>[{message.alias}]: {message.text}</li>);
 			});
 				
 			return (
 				<div>
-					<ul>{rows}</ul><br />
+					<h2>Messages</h2>
+					<ul className="message-list">{rows}</ul><br />
 					Message: <input onKeyUp={this.onKeyUp} type="text" />
 				</div>
 			)

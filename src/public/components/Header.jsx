@@ -5,7 +5,8 @@ define(function (require) {
 	var Header = React.createClass({
 		getInitialState: function () {
 			return {
-				noOfMessages: MessageStore.getMessages().length
+				noOfMessages: MessageStore.getMessages().length,
+				noOfPeople: MessageStore.getPeople().length
 			};
 		},
 
@@ -15,13 +16,16 @@ define(function (require) {
 
 		onChange: function () {
 			this.setState({
-				noOfMessages: ++this.state.noOfMessages
+				noOfMessages: MessageStore.getMessages().length,
+				noOfPeople: MessageStore.getPeople().length
 			});
 		},
 
 		render: function () {
 			return (
-				<div>Header - {this.state.noOfMessages} messages</div>
+				<div>
+				Header - {this.state.noOfMessages} message(s) - 
+				{this.state.noOfPeople} {this.state.noOfPeople > 1 ? 'people' : 'person'} connected</div>
 			)
 		}
 	});

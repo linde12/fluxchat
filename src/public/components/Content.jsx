@@ -1,6 +1,7 @@
 define(function (require) {
 	var React = require('react'),
-		Messages = require('jsx!components/Messages');
+		Messages = require('jsx!components/Messages'),
+		MessageSidebar = require('jsx!components/MessageSidebar');
 
 	var Content = React.createClass({
 		getInitialState: function () {
@@ -8,9 +9,10 @@ define(function (require) {
 		},
 
 		render: function () {
-			return (
+			return (<div>
+				<MessageSidebar />
 				<Messages />
-			)
+			</div>)
 		}
 	});
 
