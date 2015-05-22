@@ -5,7 +5,7 @@ define(function (require) {
     var MessageSidebar = React.createClass({
         getInitialState: function () {
             return {
-                people: MessageStore.getPeople().map(function (person) { return person.name})
+                people: MessageStore.getPeopleNames()
             };
         },
 
@@ -15,7 +15,7 @@ define(function (require) {
 
         onChange: function () {
             this.setState({
-                people: MessageStore.getPeople().map(function (person) { return person.name})
+                people: MessageStore.getPeopleNames()
             });
         },
 

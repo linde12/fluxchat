@@ -6,7 +6,7 @@ define(function (require) {
         getInitialState: function () {
             return {
                 noOfMessages: MessageStore.getMessages().length,
-                noOfPeople: MessageStore.getPeople().length
+                noOfPeople: MessageStore.getPeopleNames().length
             };
         },
 
@@ -17,7 +17,7 @@ define(function (require) {
         onChange: function () {
             this.setState({
                 noOfMessages: MessageStore.getMessages().length,
-                noOfPeople: MessageStore.getPeople().length
+                noOfPeople: MessageStore.getPeopleNames().length
             });
         },
 

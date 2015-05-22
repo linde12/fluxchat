@@ -5,7 +5,7 @@
                 app = express(),
                 http = require('http').Server(app);
                 io = require('socket.io')(http),
-                people = [];
+                people = {};
 
             // Static files in public, the actual front end
             app.use(express.static(__dirname + '/../public'));
@@ -28,15 +28,11 @@
                     text: 'User [' + name + '] has connected.'
                 });
 
-                people.push({
-                    id: socket.id,
-                    name: name
-                });
+                // Add to people object & emit to clients
+                people[socket.id] = name;
+                io.emit('people', people);
 
-                io.emit('people', people.map(function (person) {
-                    return {name: person.name};
-                }));
-
+                // Welcome the new user
                 socket.emit('message', {
                     alias: 'Server',
                     text: 'Welcome to the best & most advanced chat ever seen!'
@@ -44,8 +40,7 @@
 
                 socket.on('message', function (message) {
                     console.log("Received", message);
-
-                    if (message.text && message.alias && message.alias.indexOf("[Server]") === -1) {
+                    if (message.text && message.alias && message.alias === name && message.alias.indexOf("Server") === -1) {
                         socket.broadcast.emit('message', message);
                         if (message.text.indexOf("echo ") === 0) {
                             message.alias = "Echo";
@@ -56,16 +51,15 @@
                 });
 
                 socket.on('disconnect', function () {
+                    console.log("User disconnected");
                     io.emit('message', {
                         alias: 'Server',
-                        text: 'User [' + name + '] has disconnected.'
+                        text: 'User [' + people[socket.id] + '] has disconnected.'
                     });
-                    
-                    people.forEach(function (person) {
-                        if (person.id === socket.id) {
-                            people.splice(person, 1);
-                        }
-                    });
+
+                    if (people[socket.id]) {
+                        delete people[socket.id];
+                    }
                     io.emit('people', people);
                 });
             });

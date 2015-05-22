@@ -3,7 +3,7 @@ define(function (require) {
         EventEmmiter = require('events'),
         IoHandler = require('../IoHandler'),
         messages = [],
-        people = [];
+        people = {};
 
     var MessageStore = function () {
         var self = this;
@@ -15,8 +15,8 @@ define(function (require) {
             self.emitChange();
         });
 
-        IoHandler.on('people', function (peopleArray) {
-            people = peopleArray;
+        IoHandler.on('people', function (peopleObj) {
+            people = peopleObj;
             self.emitChange();
         });
 
@@ -32,8 +32,14 @@ define(function (require) {
         return messages;
     };
 
-    MessageStore.prototype.getPeople = function () {
-        return people;
+    MessageStore.prototype.getPeopleNames = function () {
+        var peopleNames = [];
+
+        for (key in people) {
+            peopleNames.push(people[key]);
+        }
+
+        return peopleNames;
     };
 
     MessageStore.prototype.emitChange = function () {
